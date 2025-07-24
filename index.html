@@ -7,12 +7,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Space Mono', monospace;
             background: #000011;
@@ -20,6 +14,17 @@
             overflow-x: hidden;
             line-height: 1.7;
             padding-top: 80px;
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         .quantum-nav {
@@ -31,7 +36,9 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 212, 255, 0.2);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateZ(0);
+            will-change: transform, background-color;
         }
         
         .nav-container {
@@ -52,7 +59,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateZ(0);
+            will-change: transform;
         }
         
         .nav-logo:hover {
@@ -74,9 +83,11 @@
             font-size: 0.95rem;
             padding: 8px 16px;
             border-radius: 20px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
+            transform: translateZ(0);
+            will-change: transform, background-color;
         }
         
         .nav-link::before {
@@ -87,7 +98,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
-            transition: left 0.5s;
+            transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .nav-link:hover::before {
@@ -100,22 +111,33 @@
             transform: translateY(-2px);
         }
         
-        .nav-swap {
-            background: linear-gradient(45deg, #ff3366, #ffaa00);
+        .nav-swap,
+        .nav-cta {
             color: #000;
             text-decoration: none;
             font-weight: 700;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 12px 24px;
+            border-radius: 25px;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
+            transform: translateZ(0);
+            will-change: transform;
         }
         
-        .nav-swap::before {
+        .nav-swap {
+            background: linear-gradient(45deg, #ff3366, #ffaa00);
+        }
+        
+        .nav-cta {
+            background: linear-gradient(45deg, #00d4ff, #ff3366);
+        }
+        
+        .nav-swap::before,
+        .nav-cta::before {
             content: '';
             position: absolute;
             top: 0;
@@ -123,33 +145,24 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
+            transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
-        .nav-swap:hover::before {
+        .nav-swap:hover::before,
+        .nav-cta:hover::before {
             left: 100%;
         }
         
-        .nav-swap:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.4);
+        .nav-swap:hover,
+        .nav-cta:hover {
+            transform: translateY(-3px) scale(1.05);
         }
         
-        .nav-cta {
-            background: linear-gradient(45deg, #00d4ff, #ff3366);
-            color: #000;
-            text-decoration: none;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .nav-swap:hover {
+            box-shadow: 0 10px 25px rgba(255, 51, 102, 0.4);
         }
         
         .nav-cta:hover {
-            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
         }
         
@@ -161,6 +174,8 @@
             height: 30px;
             justify-content: space-between;
             padding: 5px 0;
+            z-index: 1002;
+            position: relative;
         }
         
         .nav-toggle span {
@@ -170,6 +185,7 @@
             border-radius: 2px;
             transition: all 0.3s ease;
             transform-origin: center;
+            display: block;
         }
         
         .nav-toggle.active span:nth-child(1) {
@@ -251,6 +267,9 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateZ(0);
+            will-change: transform;
         }
         
         .consciousness-panel::before {
@@ -455,7 +474,9 @@
             letter-spacing: 2px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateZ(0);
+            will-change: transform;
         }
         
         .quantum-button::before {
@@ -466,7 +487,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
+            transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .quantum-button:hover::before {
@@ -651,7 +672,8 @@
                 border-radius: 10px;
             }
             
-            .nav-cta {
+            .nav-cta,
+            .nav-swap {
                 font-size: 1.1rem;
                 padding: 15px 40px;
                 margin-top: 20px;
@@ -671,8 +693,17 @@
             .nav-menu {
                 top: 70px;
                 height: calc(100vh - 70px);
-                gap: 30px;
-                padding-top: 60px;
+                padding-top: 50px;
+                gap: 25px;
+            }
+            
+            .nav-link,
+            .nav-swap,
+            .nav-cta {
+                font-size: 1rem;
+                padding: 10px 20px;
+                width: 90%;
+                max-width: 280px;
             }
             
             .title-hologram {
@@ -715,6 +746,27 @@
             
             .nav-container {
                 padding: 0 15px;
+                height: 65px;
+            }
+            
+            .nav-logo {
+                font-size: 1.3rem;
+            }
+            
+            .nav-menu {
+                top: 65px;
+                height: calc(100vh - 65px);
+                padding-top: 40px;
+                gap: 20px;
+            }
+            
+            .nav-link,
+            .nav-swap,
+            .nav-cta {
+                font-size: 0.95rem;
+                padding: 8px 15px;
+                width: 95%;
+                max-width: 250px;
             }
             
             .title-hologram {
